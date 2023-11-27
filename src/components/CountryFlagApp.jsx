@@ -6,6 +6,7 @@ export default function CountryFlagApp() {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState("");
   const [showCountries, setShowCountries] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   // useEffect(() => {
   async function fetchCountries(region) {
@@ -40,10 +41,23 @@ export default function CountryFlagApp() {
           <option value="asia">Asia</option>
           <option value="europe">Europe</option>
         </select>
-        <button onClick={() => fetchCountries(region)}>Show countries</button>
+        <button
+          onClick={() => {
+            region && fetchCountries(region);
+            region && setButtonClicked(true);
+          }}
+        >
+          Show countries
+        </button>
       </div>
 
-      <div className="countries-container">
+      <div
+        className="countries-container"
+        style={{
+          backgroundColor:
+            buttonClicked && region ? "rgba(255, 255, 255, 0.757)" : "none",
+        }}
+      >
         {countries.map((country) => {
           console.log(country);
           return <Countries key={country.name.common} countries={country} />;

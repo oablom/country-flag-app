@@ -42,6 +42,9 @@
   display: flex;
   justify-content: center;
   background-image: url(./components/images/mapofasia.png);
+  height: 100%;
+  padding-bottom: 100px;
+  min-height: 100vh;
 }
 
 * .bg {
@@ -50,14 +53,14 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: 100vh;
   z-index: -1;
 }
 
 .countries-container {
-  background-color: rgba(255, 255, 255, 0.672);
+  min-width: 0px;
   padding: 30px;
   border-radius: 10px;
+  max-height: 1100px;
   display: grid;
   grid-template-columns: repeat(6, 100px);
   grid-template-rows: repeat(24, 1fr);
@@ -88,4 +91,29 @@
 .countryflag:hover {
   cursor: pointer;
   transform: scale(1.2);
+}
+
+button,
+select {
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #04aa6d;
+  border: none;
+  color: white;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #3e8e41;
+}
+
+select:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=App.css.map */
