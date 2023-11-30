@@ -3,7 +3,7 @@ import LoadingSpinner from "./LoadingSpinner";
 export default function ImagePreloader({ loaded, src, selectedRegionStatus }) {
   return (
     <div className="image-preloader-container">
-      {!loaded && <LoadingSpinner />}
+      {!loaded && <LoadingSpinner type="background" />}
 
       {loaded && (
         <div className={selectedRegionStatus}>

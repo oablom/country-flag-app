@@ -1,8 +1,8 @@
-export default function LoadingSpinner() {
+export default function LoadingSpinner({ type }) {
   return (
     <div className="spinner-container">
-      <p>
-        Loading <br /> image(s)...
+      <p className={type}>
+        Loading <br /> {type}...
       </p>
       <div className="loading-spinner"></div>
       {console.log("Loading images...")}

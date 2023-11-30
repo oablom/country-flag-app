@@ -29,8 +29,7 @@
 .africa,
 .europe,
 .bg-world,
-.image-preloader-container,
-.spinner-container {
+.image-preloader-container {
   display: block;
   background-repeat: repeat-y;
   height: 100vh;
@@ -49,6 +48,8 @@
 
 .spinner-container {
   position: absolute;
+  top: 40%;
+  left: 45%;
   display: flex;
   justify-content: center;
   * {
@@ -58,7 +59,10 @@
   }
   p {
     // transform: translateX(30px);
-    transform: translate(40px, 55px);
+    transform: translate(49px, 50px);
+  }
+  .background {
+    transform: translate(30px, 50px);
   }
 }
 // .africa {
@@ -157,6 +161,7 @@ select:hover {
   }
 }
 .loading-spinner {
+  // position: absolute;
   width: 150px;
   height: 150px;
   border: 10px dotted #f3f3f3;
