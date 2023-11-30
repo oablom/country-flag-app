@@ -91,7 +91,7 @@
 .countries-container {
   min-width: 0px;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 30px;
   max-height: 1400px;
   height: 100%;
   display: grid;
@@ -118,8 +118,8 @@
 }
 
 .countryflag {
-  width: 50px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  width: 80px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   animation: spinner-out 1s;
 }
 .countryflag:hover {
