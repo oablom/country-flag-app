@@ -42,6 +42,7 @@ function App() {
         image.src = src;
         image.onload = () => {
           setLoaded(true);
+          console.log("completed loading", src);
         };
       });
     } catch (error) {

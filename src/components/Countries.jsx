@@ -24,7 +24,7 @@ export default function Countries({ countries }) {
       />
       <div
         className="country-info-modal"
-        style={{ display: showModal ? "block" : "none" }}
+        style={{ visibility: showModal ? "visible" : "hidden" }}
         onClick={handleModalClick}
       >
         <span className="close" onClick={() => setShowModal(false)}>

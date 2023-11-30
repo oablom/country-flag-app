@@ -4,8 +4,11 @@ export default function ImagePreloader({ loaded, src, selectedRegionStatus }) {
   return (
     <div className="image-preloader-container">
       {!loaded && (
-        <div className={selectedRegionStatus}>Loading background images...</div>
+        <div className={selectedRegionStatus}>
+          Loading background images...{console.log("Loading images...")}
+        </div>
       )}
+
       {loaded && (
         <div className={selectedRegionStatus}>
           <img
