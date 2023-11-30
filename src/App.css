@@ -54,7 +54,9 @@
 .africa,
 .europe,
 .bg-world,
-.image-preloader-container {
+.image-preloader-container,
+.spinner-container {
+  display: block;
   background-repeat: repeat-y;
   height: 100vh;
   width: 100vw;
@@ -68,11 +70,25 @@
   max-height: 100vh;
 }
 
+.spinner-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+.spinner-container * {
+  position: absolute;
+  top: 40%;
+  left: 43%;
+}
+.spinner-container p {
+  transform: translate(40px, 55px);
+}
+
 .countries-container {
   min-width: 0px;
   padding: 30px;
   border-radius: 10px;
-  max-height: 1350px;
+  max-height: 1400px;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(6, 100px);
@@ -129,4 +145,22 @@ button:hover {
 
 select:hover {
   cursor: pointer;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  width: 150px;
+  height: 150px;
+  border: 10px dotted #f3f3f3;
+  border-top: 10px dashed black;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+  border-style: double;
 }/*# sourceMappingURL=App.css.map */
