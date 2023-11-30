@@ -1,3 +1,4 @@
-installera npm install '@vis.gl/react-google-maps'
-installera npm install @react-google-maps/api
-
+Installera:
+npm install react-leaflet
+npm install react react-dom leaflet
+npm install -D @types/leaflet

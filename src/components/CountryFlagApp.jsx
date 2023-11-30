@@ -2,19 +2,24 @@ import { useState, useEffect } from "react";
 import Countries from "./Countries";
 // import africa from "../images/map-of-africa.png";
 
-export default function CountryFlagApp() {
+export default function CountryFlagApp({ selectedRegion }) {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState("");
   const [showCountries, setShowCountries] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
 
   // useEffect(() => {
+  //   const selectedRegionChild = () => {
+  //     if (region) {
+  //       selectedRegion(region);
+  //     }
+  //   };
+
+  //   selectedRegionChild();
+  // }, [buttonClicked, region, selectedRegion]);
+
   async function fetchCountries(region) {
     try {
-      // if (!region) {
-      //   console.log("no region");
-      //   return;
-      // }
       const response = await fetch(
         `https://restcountries.com/v3.1/region/${region}`
       );
@@ -24,10 +29,16 @@ export default function CountryFlagApp() {
       console.error(error);
     }
   }
-  // }, []);
+  const selectedRegionChild = () => {
+    if (region) {
+      selectedRegion(region);
+    }
+  };
+
+  
 
   return (
-    <div>
+    <div className="country-flag-app-container">
       <div className="select-region">
         <select
           onChange={(e) => {
@@ -45,6 +56,8 @@ export default function CountryFlagApp() {
           onClick={() => {
             region && fetchCountries(region);
             region && setButtonClicked(true);
+
+            selectedRegionChild();
           }}
         >
           Show countries
@@ -59,7 +72,6 @@ export default function CountryFlagApp() {
         }}
       >
         {countries.map((country) => {
-          console.log(country);
           return <Countries key={country.name.common} countries={country} />;
         })}
       </div>

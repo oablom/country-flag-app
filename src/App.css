@@ -17,8 +17,8 @@
   padding: 20px;
   border: 1px solid #888;
   z-index: 2;
-  width: 80%;
   border-radius: 10px;
+  max-width: 800px;
 }
 
 .close {
@@ -38,33 +38,47 @@
   cursor: pointer;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   display: flex;
   justify-content: center;
-  background-image: url(./components/images/mapofasia.png);
-  height: 100%;
   padding-bottom: 100px;
-  min-height: 100vh;
+  margin: 0;
 }
 
-* .bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+.asia,
+.africa,
+.europe,
+.bg-world,
+.image-preloader-container {
+  background-repeat: repeat-y;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  position: fixed;
   z-index: -1;
+}
+
+.bg-world {
+  height: auto;
+  max-height: 100vh;
 }
 
 .countries-container {
   min-width: 0px;
   padding: 30px;
   border-radius: 10px;
-  max-height: 1100px;
+  max-height: 1350px;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(6, 100px);
   grid-template-rows: repeat(24, 1fr);
-  gap: 10px;
+  gap: 40px;
   z-index: 1;
 }
 

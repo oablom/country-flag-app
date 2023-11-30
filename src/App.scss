@@ -1,32 +1,83 @@
 @import "Modal.scss";
+
+// #root {
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+// }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   display: flex;
   justify-content: center;
-  background-image: url(./components/images/mapofasia.png);
-  height: 100%;
+  // background-image: url(./components/images/mapofasia.png);
+  // height: 100%;
   padding-bottom: 100px;
-  min-height: 100vh;
+
+  // min-height: 100vh;
+  margin: 0;
+  // overflow: hidden;
+  // background-size: contain;
 }
-* .bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  //   height: 100vh;
+
+.asia,
+.africa,
+.europe,
+.bg-world,
+.image-preloader-container {
+  background-repeat: repeat-y;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  position: fixed;
+  // width: 100%;
+  // background-size: contain;
+  // min-height: 100vh;
   z-index: -1;
 }
+.bg-world {
+  height: auto;
+  max-height: 100vh;
+}
+
+// .africa {
+//   background-image: url("./components/images/map-of-africa.png");
+// }
+// .asia {
+//   background-image: url("./components/images/mapofasia.png");
+// }
+// .europe {
+//   background-image: url("./components/images/map-of-europe.png");
+// }
+// .world {
+//   background-image: url("./components/images/world-map.webp");
+//   background-position: center;
+// }
+
+// .country-flag-app-container {
+//   width: 2000px;
+//   display: flex;
+//   // justify-content: center;
+//   flex-direction: column;
+//   align-items: center;
+// }
 
 .countries-container {
   //   background-color: rgba(255, 255, 255, 0.757);
   min-width: 0px;
   padding: 30px;
   border-radius: 10px;
-  max-height: 1100px;
+  max-height: 1350px;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(6, 100px);
   grid-template-rows: repeat(24, 1fr);
-  gap: 10px;
+  gap: 40px;
   z-index: 1;
 }
 
