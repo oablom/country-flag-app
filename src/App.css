@@ -89,6 +89,8 @@
 }
 
 .countries-container {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
   min-width: 0px;
   padding: 30px;
   border-radius: 30px;
@@ -101,6 +103,14 @@
   z-index: 1;
 }
 
+@keyframes stretchout {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 100%;
+  }
+}
 .country {
   display: flex;
   justify-content: space-around;
@@ -118,7 +128,7 @@
 }
 
 .countryflag {
-  width: 80px;
+  width: 70px;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   animation: spinner-out 1s;
 }

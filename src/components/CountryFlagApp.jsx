@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Countries from "./Countries";
 import LoadingSpinner from "./LoadingSpinner";
 // import africa from "../images/map-of-africa.png";
@@ -6,20 +6,10 @@ import LoadingSpinner from "./LoadingSpinner";
 export default function CountryFlagApp({ selectedRegion }) {
   const [countries, setCountries] = useState([]);
   const [region, setRegion] = useState("");
-  const [showCountries, setShowCountries] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [loadedCountries, setLoadedCountries] = useState(false);
-  const [clickedButton, setClickedButton] = useState(false);
-
-  // useEffect(() => {
-  //   const selectedRegionChild = () => {
-  //     if (region) {
-  //       selectedRegion(region);
-  //     }
-  //   };
-
-  //   selectedRegionChild();
-  // }, [buttonClicked, region, selectedRegion]);
+  const [countriesArray, setCountriesArray] = useState([]);
+  const countriesContainerRef = useRef(null);
 
   async function fetchCountries(region) {
     try {
@@ -39,13 +29,71 @@ export default function CountryFlagApp({ selectedRegion }) {
     }
   };
 
+  const animationTimeout = () => {
+    setTimeout(() => {
+      countriesContainerRef.current.style.animation = "none";
+    }, 3000);
+  };
+
+  useEffect(() => {
+    if (countriesContainerRef.current) {
+      countriesContainerRef.current.style.animation =
+        "stretchout 3s ease-in-out";
+      const clearAnimationTimeout = animationTimeout();
+      clearTimeout(clearAnimationTimeout);
+    }
+  }, [buttonClicked]);
+
+  // useEffect(() => {
+  //   setCountriesArray([]);
+  //   countries.map((country) => {
+  //     setCountriesArray([
+  //       ...countriesArray,
+  //       <Countries key={country.name.common} countries={country} />,
+  //     ]);
+  //   });
+  //   console.log(countriesArray);
+  // }, [buttonClicked]);
+
+  // useEffect(() => {
+  //   for (let i = 1; i <= countries.length; i++) {
+  //     const country = countries[i];
+  //     console.log(i);
+  //     setCountriesArray((prevState) => [
+  //       ...prevState,
+  //       <Countries key={country.name.common} countries={country} />,
+  //     ]);
+
+  //     setTimeout(
+  //       () =>
+  //         setCountriesArray((prevState) => [
+  //           ...prevState,
+  //           <Countries key={country.name.common} countries={country} />,
+  //         ]),
+  //       3000
+  //     );
+  //   }
+  // }, []);
+
+  // const countryComponents = [];
+
+  // function test(countries) {
+  //   for (let index = 0; index < countries.length; index++) {
+  //     const country = countries[index];
+  //     console.log(index);
+  //     countryComponents.push(
+  //       <Countries key={country.name.common} countries={country} />
+  //     );
+  //   }
+  //   return countryComponents;
+  // }
+
   return (
     <div className="country-flag-app-container">
       <div className="select-region">
         <select
           onChange={(e) => {
             setRegion(e.target.value);
-            setButtonClicked(false);
           }}
           name="select-country"
           id="select-country"
@@ -57,9 +105,10 @@ export default function CountryFlagApp({ selectedRegion }) {
         </select>
         <button
           onClick={() => {
+            countriesContainerRef.current &&
+              (countriesContainerRef.current.style.animation = "none");
             region && fetchCountries(region);
-            region && setButtonClicked(true);
-            setButtonClicked(true);
+            region && setButtonClicked(!buttonClicked);
 
             selectedRegionChild();
           }}
@@ -71,11 +120,14 @@ export default function CountryFlagApp({ selectedRegion }) {
       {loadedCountries ? (
         <div
           className="countries-container"
+          ref={countriesContainerRef}
           style={{
             backgroundColor:
-              buttonClicked && region ? "rgba(255, 255, 255, 0.757)" : "none",
+              buttonClicked && region ? "rgba(255, 255, 255, 0.6)" : "none",
           }}
         >
+          {/* {test(countries)} */}
+
           {countries.map((country) => {
             return <Countries key={country.name.common} countries={country} />;
           })}
@@ -83,7 +135,6 @@ export default function CountryFlagApp({ selectedRegion }) {
       ) : (
         <div>
           {region != "" && buttonClicked && <LoadingSpinner type="images" />}
-          {console.log("REGION(!!!):", region)}
         </div>
         //
       )}
