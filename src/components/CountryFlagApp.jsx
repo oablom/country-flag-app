@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Countries from "./Countries";
 import LoadingSpinner from "./LoadingSpinner";
-// import africa from "../images/map-of-africa.png";
 
 export default function CountryFlagApp({ selectedRegion }) {
   const [countries, setCountries] = useState([]);
@@ -44,49 +43,36 @@ export default function CountryFlagApp({ selectedRegion }) {
     }
   }, [buttonClicked]);
 
-  // useEffect(() => {
-  //   setCountriesArray([]);
-  //   countries.map((country) => {
-  //     setCountriesArray([
-  //       ...countriesArray,
-  //       <Countries key={country.name.common} countries={country} />,
-  //     ]);
-  //   });
-  //   console.log(countriesArray);
-  // }, [buttonClicked]);
+  useEffect(() => {
+    // setCountriesArray([]);
 
-  // useEffect(() => {
-  //   for (let i = 1; i <= countries.length; i++) {
-  //     const country = countries[i];
-  //     console.log(i);
-  //     setCountriesArray((prevState) => [
-  //       ...prevState,
-  //       <Countries key={country.name.common} countries={country} />,
-  //     ]);
+    let intervalId;
+    let index = 0;
 
-  //     setTimeout(
-  //       () =>
-  //         setCountriesArray((prevState) => [
-  //           ...prevState,
-  //           <Countries key={country.name.common} countries={country} />,
-  //         ]),
-  //       3000
-  //     );
-  //   }
-  // }, []);
+    const addCountryWithDelay = () => {
+      if (index < countries.length) {
+        //loopar med en ifstats istället för en forloop för att kunna använda setTimeout. Det buggade så mkt annars.
+        setCountriesArray((prevArray) => {
+          const country = countries[index];
+          index++;
+          return [...prevArray, country];
+        });
+      } else {
+        clearInterval(intervalId);
+      }
+    };
 
-  // const countryComponents = [];
+    clearInterval(intervalId);
 
-  // function test(countries) {
-  //   for (let index = 0; index < countries.length; index++) {
-  //     const country = countries[index];
-  //     console.log(index);
-  //     countryComponents.push(
-  //       <Countries key={country.name.common} countries={country} />
-  //     );
-  //   }
-  //   return countryComponents;
-  // }
+    intervalId = setInterval(addCountryWithDelay, 50);
+    console.log(countriesArray);
+
+    return () => {
+      console.log(countriesArray);
+      clearInterval(intervalId);
+      setCountriesArray([]);
+    };
+  }, [buttonClicked, loadedCountries, countries]);
 
   return (
     <div className="country-flag-app-container">
@@ -109,6 +95,7 @@ export default function CountryFlagApp({ selectedRegion }) {
               (countriesContainerRef.current.style.animation = "none");
             region && fetchCountries(region);
             region && setButtonClicked(!buttonClicked);
+            // setCountriesArray([]);
 
             selectedRegionChild();
           }}
@@ -126,11 +113,13 @@ export default function CountryFlagApp({ selectedRegion }) {
               buttonClicked && region ? "rgba(255, 255, 255, 0.6)" : "none",
           }}
         >
-          {/* {test(countries)} */}
-
-          {countries.map((country) => {
-            return <Countries key={country.name.common} countries={country} />;
-          })}
+          {countriesArray &&
+            loadedCountries &&
+            countriesArray.map((country) => {
+              return (
+                <Countries key={country.name.common} countries={country} />
+              );
+            })}
         </div>
       ) : (
         <div>
@@ -141,3 +130,58 @@ export default function CountryFlagApp({ selectedRegion }) {
     </div>
   );
 }
+
+// useEffect(() => {
+//   setCountriesArray([]);
+//   countries.map((country) => {
+//     setCountriesArray([
+//       ...countriesArray,
+//       <Countries key={country.name.common} countries={country} />,
+//     ]);
+//   });
+//   console.log(countriesArray);
+// }, [buttonClicked]);
+
+// useEffect(() => {
+//   for (let i = 1; i <= countries.length; i++) {
+//     const country = countries[i];
+//     console.log(i);
+//     setCountriesArray((prevState) => [
+//       ...prevState,
+//       <Countries key={country.name.common} countries={country} />,
+//     ]);
+
+//     setTimeout(
+//       () =>
+//         setCountriesArray((prevState) => [
+//           ...prevState,
+//           <Countries key={country.name.common} countries={country} />,
+//         ]),
+//       3000
+//     );
+//   }
+// }, []);
+
+// const countryComponents = [];
+
+// function test(countries) {
+//   for (let index = 0; index < countries.length; index++) {
+//     const country = countries[index];
+//     console.log(index);
+//     countryComponents.push(
+//       <Countries key={country.name.common} countries={country} />
+//     );
+//   }
+//   return countryComponents;
+// }
+
+// var list = [1, 2, 3, 4, 5];
+
+// for (var i = 0, len = list.length; i < len; i += 1) {
+//   (function (i) {
+//     setInterval(function () {
+//       list[i] += 10;
+//       console.log(i + "=>" + list[i] + "\n");
+//     }, 5000);
+//   })(i);
+// }

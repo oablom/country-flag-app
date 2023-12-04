@@ -91,7 +91,6 @@
 .countries-container {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
-  min-width: 0px;
   padding: 30px;
   border-radius: 30px;
   max-height: 1400px;
@@ -157,6 +156,12 @@ button {
 button:hover {
   cursor: pointer;
   background-color: #3e8e41;
+  transform: scale(1.01);
+}
+
+select:hover, select:focus {
+  cursor: pointer;
+  background-color: rgb(241, 241, 241);
 }
 
 select:hover {

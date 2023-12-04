@@ -91,10 +91,12 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   //   background-color: rgba(255, 255, 255, 0.757);
   overflow: hidden;
-  min-width: 0px;
+  // min-width: 0px;
+
   padding: 30px;
   border-radius: 30px;
   max-height: 1400px;
+  // height: auto;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(6, 100px);
@@ -158,9 +160,19 @@ button {
   &:hover {
     cursor: pointer;
     background-color: #3e8e41;
+    transform: scale(1.01);
   }
 }
+select {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    // background-color: rgba(123, 123, 123, 0.716);
 
+    background-color: rgb(241, 241, 241);
+    // color: white;
+  }
+}
 select:hover {
   cursor: pointer;
 }
